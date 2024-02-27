@@ -1,8 +1,7 @@
 pipeline {
     stage ('Git Checkout') {
-        git 'https://github.com/Nelztacy/auto-CICD.git'
+        git url: 'https://github.com/Nelztacy/auto-CICD.git'
     }
-
     stage ('Publish Artifacts Over-SSH') {
        steps{
          sshagent(['technel']) {
