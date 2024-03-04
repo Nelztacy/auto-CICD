@@ -3,12 +3,8 @@ pipeline {
     
     tools {
         maven 'local_maven'
-    }
-    parameters {
-         string(name: 'staging_server', defaultValue: '13.232.37.20', description: 'Remote Staging Server')
-    }
-
-stages{
+        
+      stages{
         stage('Build'){
             steps {
                 sh 'mvn clean package'
@@ -25,7 +21,7 @@ stages{
             parallel{
                 stage ("Deploy to Staging"){
                     steps {
-                        sh "scp -v -o StrictHostKeyChecking=no **/*.war root@${params.staging_server}:/opt/tomcat/webapps/"
+                        sh "scp -v -o StrictHostKeyChecking=no **/*.war technel@192.168.197.130:/home/technel/var/www/html"
                     }
                 }
             }
